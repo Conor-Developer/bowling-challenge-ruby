@@ -14,7 +14,7 @@ class Frame
   end
 
   def reset_knocked_down_pins_log
-    @knocked_down_pin_log = []
+    @knocked_down_pins_log = []
     change_frame
   end
 

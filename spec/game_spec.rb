@@ -7,7 +7,10 @@ describe Game do
   context '#total_score' do
     it 'calculates the users total score' do
       game.calculate_total_score(5)
-      expect(game.total_score).to eq 5
+      game.calculate_total_score(3)
+      game.calculate_total_score(4)
+      game.calculate_total_score(4)
+      expect(game.total_score).to eq 16
     end
   end
 
@@ -52,16 +55,21 @@ describe Game do
   end
 
   context '#bonus_points' do
-    it 'allocates bonus points if the user earns a strike' do
+    it 'allocates bonus points if the user earns a spare' do
       game.calculate_total_score(5)
-      p game.total_score
+      p ''
+      p "Total Score: #{game.total_score}"
+      p "Pin Log: #{game.frame.knocked_down_pins_log}"
       game.calculate_total_score(5)
-      p game.total_score
-      game.calculate_total_score(5)
-      p game.total_score
+      p "Total Score: #{game.total_score}"
+      p "Pin Log: #{game.frame.knocked_down_pins_log}"
       game.calculate_total_score(4)
-      p game.total_score
-      expect(game.total_score).to eq 24
+      p "Total Score: #{game.total_score}"
+      p "Pin Log: #{game.frame.knocked_down_pins_log}"
+      game.calculate_total_score(4)
+      p "Total Score: #{game.total_score}"
+      p "Pin Log: #{game.frame.knocked_down_pins_log}"
+      expect(game.total_score).to eq 22
     end
   end
 end

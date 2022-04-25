@@ -9,38 +9,25 @@ class Game
     @bonus_roll = 0
     @total_score = 0
     @bonus_points = 0
+    @roll = 0
   end
 
   def calculate_total_score(num)
-    if @bonus_points > 0
-      num += @bonus_points
-      p "NUM:"
-      p num
-      @bonus_points = 0
-    end
-
     @frame.knocked_down_pins(num)
+    @roll += 1
     
-
-    if bonus_roll == 1
-      @bonus_points = @frame.knocked_down_pins_log[0]
-    elsif bonus_roll == 2
-      @bonus_points = @frame.knocked_down_pins_log[0]
-      @bonus_points += @frame.knocked_down_pins_log[1]
-    else @total_score += @frame.knocked_down_pins_log.sum
+    if @roll == 2
+      @total_score += @frame.knocked_down_pins_log.sum
+      @roll = 0
+      reset_knocked_down_pins_log
+    else 
+      bonus_points # This needs to be reworked - make true/false switch?
     end
-
   end
 
   def reset_knocked_down_pins_log
-    if strike?
+    if strike? || spare? || @frame.knocked_down_pins_log.length == 2
       @frame.reset_knocked_down_pins_log
-    elsif spare?
-      @frame.reset_knocked_down_pins_log
-    elsif @frame.knocked_down_pins_log.length == 2
-      @frame.reset_knocked_down_pins_log
-    else 
-      return
     end
   end
 
@@ -64,6 +51,15 @@ class Game
     elsif strike?
       @bonus_roll = 2
     else @bonus_roll
+    end
+  end
+
+  def bonus_points
+    if bonus_roll == 1
+      @total_score += @frame.knocked_down_pins_log[0]
+    elsif bonus_roll == 2
+      @total_score += @frame.knocked_down_pins_log[0]
+      @total_score += @frame.knocked_down_pins_log[1]
     end
   end
 end
