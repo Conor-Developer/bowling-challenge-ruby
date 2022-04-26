@@ -57,19 +57,17 @@ describe Game do
   context '#bonus_points' do
     it 'allocates bonus points if the user earns a spare' do
       game.calculate_total_score(5)
-      p ''
-      p "Total Score: #{game.total_score}"
-      p "Pin Log: #{game.frame.knocked_down_pins_log}"
       game.calculate_total_score(5)
-      p "Total Score: #{game.total_score}"
-      p "Pin Log: #{game.frame.knocked_down_pins_log}"
       game.calculate_total_score(4)
-      p "Total Score: #{game.total_score}"
-      p "Pin Log: #{game.frame.knocked_down_pins_log}"
       game.calculate_total_score(4)
-      p "Total Score: #{game.total_score}"
-      p "Pin Log: #{game.frame.knocked_down_pins_log}"
       expect(game.total_score).to eq 22
+    end
+
+    xit 'allocates bonus points if the user earns a strike' do
+      game.calculate_total_score(10)
+      game.calculate_total_score(1)
+      game.calculate_total_score(1)
+      expect(game.total_score).to eq 14
     end
   end
 end

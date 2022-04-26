@@ -6,7 +6,7 @@ class Frame
 
   def initialize(score = Score.new)
     @knocked_down_pins_log = []
-    @frame = 0
+    @frame = 1
   end
 
   def knocked_down_pins(num)
@@ -15,7 +15,6 @@ class Frame
 
   def reset_knocked_down_pins_log
     @knocked_down_pins_log = []
-    change_frame
   end
 
   def change_frame
