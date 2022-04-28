@@ -67,6 +67,8 @@ describe Game do
       game.calculate_total_score(10)
       game.calculate_total_score(1)
       game.calculate_total_score(1)
+     # p "Score: #{game.total_score}"
+     # p "Log: #{game.frame.knocked_down_pins_log}"
       expect(game.total_score).to eq 14
     end
   end
