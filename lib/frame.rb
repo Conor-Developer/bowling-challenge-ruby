@@ -2,11 +2,11 @@ require_relative './score'
 
 class Frame
 
- attr_reader :knocked_down_pins_log, :frame
+ attr_reader :knocked_down_pins_log, :frame_no
 
   def initialize(score = Score.new)
     @knocked_down_pins_log = []
-    @frame = 1
+    @frame_no = 1
   end
 
   def knocked_down_pins(num)
@@ -18,6 +18,6 @@ class Frame
   end
 
   def change_frame
-    @frame += 1
+    @frame_no += 1
   end
 end
