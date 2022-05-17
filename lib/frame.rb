@@ -1,10 +1,8 @@
-require_relative './score'
-
 class Frame
 
  attr_reader :knocked_down_pins_log, :frame_no
 
-  def initialize(score = Score.new)
+  def initialize
     @knocked_down_pins_log = []
     @frame_no = 1
   end

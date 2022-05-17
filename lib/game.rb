@@ -2,7 +2,7 @@ require_relative './frame'
 
 class Game
 
-  attr_reader :frame, :total_score, :bonus_points
+  attr_reader :frame, :total_score
 
   LAST_FRAME = 10
 
@@ -11,7 +11,6 @@ class Game
     @total_score = 0
     @bonus_points = 0
     @roll = 0
-    reduced_points = false
     @last_frame_bonus_roll = 0
   end
 
@@ -40,9 +39,8 @@ class Game
          @bonus_points -= 1
       end
      elsif @bonus_points == 2
-         @total_score += @frame.knocked_down_pins_log[0]
-         @bonus_points -= 1
-         @reduced_points = true
+        @bonus_points -= 1
+        @total_score += @frame.knocked_down_pins_log[0]
      end
   end
 

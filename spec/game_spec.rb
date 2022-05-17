@@ -67,7 +67,7 @@ describe Game do
       game.calculate_total_score(5)
       game.calculate_total_score(4)
       game.calculate_total_score(4)
-      
+
       expect(game.total_score).to eq 22
     end
 
